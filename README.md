@@ -124,7 +124,7 @@ After circuit creation, each hop only knows its immediate neighbors — **no sin
 
   ┌─── CLIENT CONNECTION ──────────────────────────────────────────────────────┐
   │  1. Client fetches encrypted descriptor from Directory                     │
-  │  2. Client decrypts with SHA256("abc123.shade") → learns intro points         │
+  │  2. Client decrypts with SHA256("abc123.shade") → learns intro points      │
   │  3. Client picks random relay as Rendezvous Point (RP)                     │
   │  4. Client builds 3-hop circuit to RP, sends ESTABLISH_RENDEZVOUS(cookie)  │
   │  5. Client builds 3-hop circuit to Intro Point, sends INTRODUCE1           │

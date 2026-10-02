@@ -117,24 +117,24 @@ After circuit creation, each hop only knows its immediate neighbors — **no sin
   ┌─── HS SETUP ───────────────────────────────────────────────────────────────┐
   │  1. HS generates Ed25519 + X25519 key pairs                                │
   │  2. HS registers domain name → public key with Directory                   │
-  │  3. HS builds 3-hop circuits to 2 relays, sends ESTABLISH_INTRO           │
+  │  3. HS builds 3-hop circuits to 2 relays, sends ESTABLISH_INTRO            │
   │  4. HS encrypts descriptor (intro points + keys) with SHA256(domain)       │
-  │  5. HS uploads encrypted descriptor to Directory (opaque blob)            │
+  │  5. HS uploads encrypted descriptor to Directory (opaque blob)             │
   └────────────────────────────────────────────────────────────────────────────┘
 
   ┌─── CLIENT CONNECTION ──────────────────────────────────────────────────────┐
   │  1. Client fetches encrypted descriptor from Directory                     │
-  │  2. Client decrypts with SHA256("xxx.shade") → learns intro points        │
-  │  3. Client picks random relay as Rendezvous Point (RP)                    │
-  │  4. Client builds 3-hop circuit to RP, sends ESTABLISH_RENDEZVOUS(cookie) │
-  │  5. Client builds 3-hop circuit to Intro Point, sends INTRODUCE1          │
-  │     containing: RP address + cookie + client X25519 key (encrypted)       │
-  │  6. Intro Point forwards INTRODUCE2 to HS through HS's circuit            │
-  │  7. HS decrypts, learns RP address + cookie + client key                  │
-  │  8. HS builds 3-hop circuit to RP, sends RENDEZVOUS1(cookie, HS key)      │
-  │  9. RP matches cookies, splices the two circuits                          │
-  │  10. Client and HS derive shared e2e key from X25519 exchange             │
-  │  11. Data flows: Client ←→ 3 hops ←→ RP ←→ 3 hops ←→ HS (6 hops total)  │
+  │  2. Client decrypts with SHA256("abc123.shade") → learns intro points         │
+  │  3. Client picks random relay as Rendezvous Point (RP)                     │
+  │  4. Client builds 3-hop circuit to RP, sends ESTABLISH_RENDEZVOUS(cookie)  │
+  │  5. Client builds 3-hop circuit to Intro Point, sends INTRODUCE1           │
+  │     containing: RP address + cookie + client X25519 key (encrypted)        │
+  │  6. Intro Point forwards INTRODUCE2 to HS through HS's circuit             │
+  │  7. HS decrypts, learns RP address + cookie + client key                   │
+  │  8. HS builds 3-hop circuit to RP, sends RENDEZVOUS1(cookie, HS key)       │
+  │  9. RP matches cookies, splices the two circuits                           │
+  │  10. Client and HS derive shared e2e key from X25519 exchange              │
+  │  11. Data flows: Client ←→ 3 hops ←→ RP ←→ 3 hops ←→ HS (6 hops total)     │
   └────────────────────────────────────────────────────────────────────────────┘
 ```
 
